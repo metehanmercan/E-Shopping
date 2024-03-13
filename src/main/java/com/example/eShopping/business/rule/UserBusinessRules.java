@@ -11,13 +11,14 @@ import org.springframework.stereotype.Service;
 public class UserBusinessRules {
     private UserRepository userRepository;
 
-    public void chekIfExistsName(String name){
-        if (userRepository.existsByName(name)){
+    public void chekIfExistsName(String name) {
+        if (userRepository.existsByName(name)) {
             throw new BusinessException("user name already exists");
         }
     }
+
     public void chekIfExistsId(int id) {
-        if (userRepository.existsById(id)==false) {
+        if (userRepository.existsById(id) == false) {
             throw new BusinessException("id does not exists");
         }
     }

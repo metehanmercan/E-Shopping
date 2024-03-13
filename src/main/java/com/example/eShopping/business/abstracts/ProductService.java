@@ -12,9 +12,11 @@ public interface ProductService {
     List<GetAllProductResponse> getAll();
 
     GetByIdProductResponse getById(int id);
-    void  add(CreateProductRequest createProductRequest);
+
+    void add(CreateProductRequest createProductRequest);
 
     void update(UpdateProductRequest updateProductRequest);
+
     void delete(int id);
 
 }

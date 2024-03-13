@@ -20,27 +20,28 @@ public class CategoryControllers {
     private CategoryService categoryService;
 
     @GetMapping
-    public List<GetAllCategoryResponse> getAll(){
+    public List<GetAllCategoryResponse> getAll() {
         return categoryService.getAll();
     }
 
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void add(@RequestBody @Valid CreateCategoryRequest createCategoryRequest){
+    public void add(@RequestBody @Valid CreateCategoryRequest createCategoryRequest) {
         this.categoryService.add(createCategoryRequest);
     }
 
     @GetMapping("/{id}")
-    public GetByIdCategoriesResponse geyById(@PathVariable int id){
+    public GetByIdCategoriesResponse geyById(@PathVariable int id) {
         return categoryService.getById(id);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable  int id){
+    public void delete(@PathVariable int id) {
         this.categoryService.delete(id);
     }
+
     @PutMapping()
-    public void update(UpdateCategoryRequest updateCategoryRequest){
+    public void update(UpdateCategoryRequest updateCategoryRequest) {
         this.categoryService.update(updateCategoryRequest);
     }
 }

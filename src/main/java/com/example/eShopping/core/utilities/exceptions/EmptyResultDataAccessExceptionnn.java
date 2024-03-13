@@ -5,10 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Map;
+
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
 
-public class EmptyResultDataAccessExceptionnn extends ProblemDetails{
-    Map<String,String> EmptyResultDataAccessException;
+public class EmptyResultDataAccessExceptionnn extends ProblemDetails {
+    Map<String, String> EmptyResultDataAccessException;
 }

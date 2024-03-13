@@ -28,23 +28,23 @@ public class CategoryManager implements CategoryService {
     @Override
     public void add(CreateCategoryRequest createCategoryRequest) {
         categoryBusinessRules.chekIfCategoryExistsName(createCategoryRequest.getName());
-        Category category=this.modelMapperService.forRequest().map(createCategoryRequest, Category.class);
+        Category category = this.modelMapperService.forRequest().map(createCategoryRequest, Category.class);
         this.categoryRepository.save(category);
     }
 
     @Override
     public List<GetAllCategoryResponse> getAll() {
-        List<Category> categories=categoryRepository.findAll();
-        List<GetAllCategoryResponse> categoryResponses=categories.stream().map(category -> this.modelMapperService.forResponse().map(category, GetAllCategoryResponse.class)).collect(Collectors.toList());
+        List<Category> categories = categoryRepository.findAll();
+        List<GetAllCategoryResponse> categoryResponses = categories.stream().map(category -> this.modelMapperService.forResponse().map(category, GetAllCategoryResponse.class)).collect(Collectors.toList());
         return categoryResponses;
     }
 
     @Override
     public GetByIdCategoriesResponse getById(int id) {
         this.categoryBusinessRules.chekIfCategoryExistsId(id);
-       Category category= this.categoryRepository.findById(id).orElseThrow();
-       GetByIdCategoriesResponse getByIdCategoriesResponse=this.modelMapperService.forResponse().map(category, GetByIdCategoriesResponse.class);
-        return  getByIdCategoriesResponse;
+        Category category = this.categoryRepository.findById(id).orElseThrow();
+        GetByIdCategoriesResponse getByIdCategoriesResponse = this.modelMapperService.forResponse().map(category, GetByIdCategoriesResponse.class);
+        return getByIdCategoriesResponse;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class CategoryManager implements CategoryService {
     public void update(UpdateCategoryRequest updateCategoryRequest) {
 
         categoryBusinessRules.chekIfCategoryExistsId(updateCategoryRequest.getId());
-        Category category=this.modelMapperService.forRequest().map(updateCategoryRequest,Category.class);
+        Category category = this.modelMapperService.forRequest().map(updateCategoryRequest, Category.class);
         this.categoryRepository.save(category);
     }
 

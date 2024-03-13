@@ -11,13 +11,15 @@ public class CategoryBusinessRules {
     private CategoryRepository categoryRepository;
 
 
-    public void chekIfCategoryExistsName(String name){
-        if (categoryRepository.existsByName(name)){
+    public void chekIfCategoryExistsName(String name) {
+        if (categoryRepository.existsByName(name)) {
             throw new BusinessException("category name already exists");
-        }}
-        public void chekIfCategoryExistsId(int id){
-           if (categoryRepository.existsById(id)==false){
-               throw new BusinessException("category does not exists");
-           }
+        }
+    }
+
+    public void chekIfCategoryExistsId(int id) {
+        if (categoryRepository.existsById(id) == false) {
+            throw new BusinessException("category does not exists");
+        }
     }
 }

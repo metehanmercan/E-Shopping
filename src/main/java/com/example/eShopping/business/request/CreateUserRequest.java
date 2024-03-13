@@ -15,7 +15,7 @@ public class CreateUserRequest {
     @NotNull
     @NotBlank
     @Size(min = 3, max = 25)
-    private  String name;
+    private String name;
 
     @NotNull
     @NotBlank

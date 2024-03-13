@@ -26,16 +26,16 @@ public class UserManager implements UserService {
 
     @Override
     public List<GetAllUsersResponse> getAll() {
-        List<User> users=this.userRepository.findAll();
-        List<GetAllUsersResponse> getAllUsersResponses=users.stream().map(user -> this.modelMapperService.forResponse().map(user, GetAllUsersResponse.class)).collect(Collectors.toList());
+        List<User> users = this.userRepository.findAll();
+        List<GetAllUsersResponse> getAllUsersResponses = users.stream().map(user -> this.modelMapperService.forResponse().map(user, GetAllUsersResponse.class)).collect(Collectors.toList());
         return getAllUsersResponses;
     }
 
     @Override
     public GetByIdUserResponse getById(int id) {
         this.userBusinessRules.chekIfExistsId(id);
-        User user=  this.userRepository.findById(id).orElseThrow();
-        GetByIdUserResponse getByIdUserResponse=this.modelMapperService.forResponse().map(user, GetByIdUserResponse.class);
+        User user = this.userRepository.findById(id).orElseThrow();
+        GetByIdUserResponse getByIdUserResponse = this.modelMapperService.forResponse().map(user, GetByIdUserResponse.class);
         return getByIdUserResponse;
     }
 
@@ -43,20 +43,20 @@ public class UserManager implements UserService {
     @Override
     public void add(CreateUserRequest createUserRequest) {
         this.userBusinessRules.chekIfExistsName(createUserRequest.getName());
-        User user=this.modelMapperService.forRequest().map(createUserRequest, User.class);
+        User user = this.modelMapperService.forRequest().map(createUserRequest, User.class);
         this.userRepository.save(user);
     }
 
     @Override
     public void delete(int id) {
         this.userBusinessRules.chekIfExistsId(id);
-      userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
     public void update(UpdateUserRequest updateUserRequest) {
         this.userBusinessRules.chekIfExistsId(updateUserRequest.getId());
-        User user=this.modelMapperService.forRequest().map(updateUserRequest, User.class);
-    this.userRepository.save(user);
+        User user = this.modelMapperService.forRequest().map(updateUserRequest, User.class);
+        this.userRepository.save(user);
     }
 }

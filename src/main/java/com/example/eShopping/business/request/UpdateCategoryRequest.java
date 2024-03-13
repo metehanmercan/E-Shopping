@@ -17,7 +17,7 @@ public class UpdateCategoryRequest {
     int id;
 
     @NotBlank
-    @Size(min = 3,max = 25)
+    @Size(min = 3, max = 25)
     @NotNull
     String name;
 }

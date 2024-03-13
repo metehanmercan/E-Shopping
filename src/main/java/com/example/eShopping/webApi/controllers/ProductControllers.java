@@ -22,26 +22,28 @@ public class ProductControllers {
 
 
     @GetMapping()
-    public List<GetAllProductResponse> getAll(){
+    public List<GetAllProductResponse> getAll() {
         return productService.getAll();
     }
+
     @PostMapping
-    @ResponseStatus(code=HttpStatus.CREATED)
-    public void add(@RequestBody @Valid CreateProductRequest createProductRequest){
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void add(@RequestBody @Valid CreateProductRequest createProductRequest) {
         this.productService.add(createProductRequest);
     }
 
     @PutMapping()
-    public void update(UpdateProductRequest updateProductRequest){
+    public void update(UpdateProductRequest updateProductRequest) {
         this.productService.update(updateProductRequest);
     }
+
     @DeleteMapping("/{id}")
-    public void delete( @PathVariable int id){
+    public void delete(@PathVariable int id) {
         this.productService.delete(id);
     }
 
     @GetMapping("/{id}")
-    public GetByIdProductResponse getById(@PathVariable  int id){
-        return  this.productService.getById(id);
+    public GetByIdProductResponse getById(@PathVariable int id) {
+        return this.productService.getById(id);
     }
 }

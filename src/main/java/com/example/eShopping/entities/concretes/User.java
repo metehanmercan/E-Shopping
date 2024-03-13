@@ -1,7 +1,6 @@
 package com.example.eShopping.entities.concretes;
 
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

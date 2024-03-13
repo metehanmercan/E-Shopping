@@ -25,8 +25,8 @@ public class ProductManager implements ProductService {
 
     @Override
     public List<GetAllProductResponse> getAll() {
-        List<Product> products=productRepository.findAll();
-        List<GetAllProductResponse> productResponses=products.stream()
+        List<Product> products = productRepository.findAll();
+        List<GetAllProductResponse> productResponses = products.stream()
                 .map(product -> this.modelMapperService.forResponse().map(product, GetAllProductResponse.class)).collect(Collectors.toList());
         return productResponses;
     }
@@ -34,22 +34,22 @@ public class ProductManager implements ProductService {
     @Override
     public GetByIdProductResponse getById(int id) {
         productBusinessRules.chekIfCategoryExistsId(id);
-       Product product= productRepository.findById(id).orElseThrow();
-       GetByIdProductResponse getByIdProductResponse=this.modelMapperService.forResponse().map(product,GetByIdProductResponse.class);
+        Product product = productRepository.findById(id).orElseThrow();
+        GetByIdProductResponse getByIdProductResponse = this.modelMapperService.forResponse().map(product, GetByIdProductResponse.class);
         return getByIdProductResponse;
     }
 
     @Override
     public void add(CreateProductRequest createProductRequest) {
         productBusinessRules.chekIfProductExistsName(createProductRequest.getName());
-        Product product=this.modelMapperService.forRequest().map(createProductRequest, Product.class);
+        Product product = this.modelMapperService.forRequest().map(createProductRequest, Product.class);
         this.productRepository.save(product);
     }
 
     @Override
     public void update(UpdateProductRequest updateProductRequest) {
         this.productBusinessRules.chekIfCategoryExistsId(updateProductRequest.getId());
-        Product product=this.modelMapperService.forRequest().map(updateProductRequest, Product.class);
+        Product product = this.modelMapperService.forRequest().map(updateProductRequest, Product.class);
         this.productRepository.save(product);
     }
 

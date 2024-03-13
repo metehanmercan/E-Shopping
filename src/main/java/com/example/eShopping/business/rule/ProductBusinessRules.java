@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 public class ProductBusinessRules {
     private ProductRepository productRepository;
 
-    public void chekIfProductExistsName(String name){
-        if (this.productRepository.existsByName(name)){
+    public void chekIfProductExistsName(String name) {
+        if (this.productRepository.existsByName(name)) {
             throw new BusinessException("product name already exists");
-        }}
-    public void chekIfCategoryExistsId(int id){
-        if (this.productRepository.existsById(id)==false){
+        }
+    }
+
+    public void chekIfCategoryExistsId(int id) {
+        if (this.productRepository.existsById(id) == false) {
             throw new BusinessException("product does not exists");
         }
     }

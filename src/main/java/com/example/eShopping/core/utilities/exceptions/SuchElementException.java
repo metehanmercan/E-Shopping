@@ -10,5 +10,5 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 public class SuchElementException extends ProblemDetails {
-    private Map<String,String> noSuchElementException;
+    private Map<String, String> noSuchElementException;
 }

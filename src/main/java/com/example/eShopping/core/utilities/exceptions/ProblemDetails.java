@@ -6,7 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@Data@NoArgsConstructor
+@Data
+@NoArgsConstructor
 public class ProblemDetails {
     String message;
 }

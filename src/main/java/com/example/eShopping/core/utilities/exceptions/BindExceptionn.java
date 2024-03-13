@@ -10,6 +10,6 @@ import java.util.Map;
 @Data
 @NoArgsConstructor
 
-public class BindExceptionn extends ProblemDetails{
-    private Map<String,String> error;
+public class BindExceptionn extends ProblemDetails {
+    private Map<String, String> error;
 }

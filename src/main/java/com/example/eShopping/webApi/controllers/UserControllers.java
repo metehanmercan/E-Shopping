@@ -21,28 +21,29 @@ public class UserControllers {
     private UserService userService;
 
     @GetMapping()
-    public List<GetAllUsersResponse> getAll(){
+    public List<GetAllUsersResponse> getAll() {
         return this.userService.getAll();
     }
 
     @PostMapping
-    @ResponseStatus(code=HttpStatus.CREATED)
-    public void add(@RequestBody @Valid CreateUserRequest createUserRequest){
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void add(@RequestBody @Valid CreateUserRequest createUserRequest) {
         this.userService.add(createUserRequest);
     }
+
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable int id) {
         this.userService.delete(id);
     }
 
     @GetMapping("/{id}")
 
-    public GetByIdUserResponse getById(int id){
-        return  this.userService.getById(id);
+    public GetByIdUserResponse getById(int id) {
+        return this.userService.getById(id);
     }
 
     @PutMapping
-    public void update(UpdateUserRequest updateUserRequest){
+    public void update(UpdateUserRequest updateUserRequest) {
         this.userService.update(updateUserRequest);
     }
 }

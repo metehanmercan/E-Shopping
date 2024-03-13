@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 public class CreateCategoryRequest {
     @NotBlank
-    @Size(min = 3,max = 25)
+    @Size(min = 3, max = 25)
     @NotNull
     private String name;
 }

@@ -14,7 +14,6 @@ public interface CategoryService {
 
     GetByIdCategoriesResponse getById(int id);
 
-
     void delete(int id);
 
     void update(UpdateCategoryRequest updateCategoryRequest);
