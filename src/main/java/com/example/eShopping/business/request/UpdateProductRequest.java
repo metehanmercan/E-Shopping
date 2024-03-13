@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateProductRequest {
-    @NotBlank
+
     @NotNull
     int id;
 

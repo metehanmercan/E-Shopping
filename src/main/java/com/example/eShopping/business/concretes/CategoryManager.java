@@ -49,6 +49,7 @@ public class CategoryManager implements CategoryService {
 
     @Override
     public void delete(int id) {
+        this.categoryBusinessRules.chekIfCategoryExistsId(id);
         this.categoryRepository.deleteById(id);
     }
 

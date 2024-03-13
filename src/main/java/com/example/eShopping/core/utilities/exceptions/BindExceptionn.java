@@ -9,6 +9,7 @@ import java.util.Map;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class SuchElementException extends ProblemDetails {
-    private Map<String,String> noSuchElementException;
+
+public class BindExceptionn extends ProblemDetails{
+    private Map<String,String> error;
 }

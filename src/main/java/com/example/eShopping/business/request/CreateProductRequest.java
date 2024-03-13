@@ -20,7 +20,6 @@ public class CreateProductRequest {
     private String name;
 
     @NotNull
-    @NotBlank
     private int categoryId;
 
 }

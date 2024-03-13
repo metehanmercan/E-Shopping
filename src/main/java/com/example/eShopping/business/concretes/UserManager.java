@@ -3,7 +3,10 @@ package com.example.eShopping.business.concretes;
 
 import com.example.eShopping.business.abstracts.UserService;
 import com.example.eShopping.business.request.CreateUserRequest;
+import com.example.eShopping.business.request.UpdateUserRequest;
 import com.example.eShopping.business.response.GetAllUsersResponse;
+import com.example.eShopping.business.response.GetByIdUserResponse;
+import com.example.eShopping.business.rule.UserBusinessRules;
 import com.example.eShopping.core.utilities.mappers.ModelMapperService;
 import com.example.eShopping.dataAccess.abstracts.UserRepository;
 import com.example.eShopping.entities.concretes.User;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 public class UserManager implements UserService {
     private UserRepository userRepository;
     private ModelMapperService modelMapperService;
+    private UserBusinessRules userBusinessRules;
 
 
     @Override
@@ -28,8 +32,31 @@ public class UserManager implements UserService {
     }
 
     @Override
+    public GetByIdUserResponse getById(int id) {
+        this.userBusinessRules.chekIfExistsId(id);
+        User user=  this.userRepository.findById(id).orElseThrow();
+        GetByIdUserResponse getByIdUserResponse=this.modelMapperService.forResponse().map(user, GetByIdUserResponse.class);
+        return getByIdUserResponse;
+    }
+
+
+    @Override
     public void add(CreateUserRequest createUserRequest) {
+        this.userBusinessRules.chekIfExistsName(createUserRequest.getName());
         User user=this.modelMapperService.forRequest().map(createUserRequest, User.class);
         this.userRepository.save(user);
+    }
+
+    @Override
+    public void delete(int id) {
+        this.userBusinessRules.chekIfExistsId(id);
+      userRepository.deleteById(id);
+    }
+
+    @Override
+    public void update(UpdateUserRequest updateUserRequest) {
+        this.userBusinessRules.chekIfExistsId(updateUserRequest.getId());
+        User user=this.modelMapperService.forRequest().map(updateUserRequest, User.class);
+    this.userRepository.save(user);
     }
 }

@@ -6,10 +6,12 @@ import com.example.eShopping.business.request.CreateProductRequest;
 import com.example.eShopping.business.request.UpdateCategoryRequest;
 import com.example.eShopping.business.request.UpdateProductRequest;
 import com.example.eShopping.business.response.GetAllProductResponse;
+import com.example.eShopping.business.response.GetByIdProductResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +27,7 @@ public class ProductControllers {
     }
     @PostMapping
     @ResponseStatus(code=HttpStatus.CREATED)
-    public void add(@RequestBody CreateProductRequest createProductRequest){
+    public void add(@RequestBody @Valid CreateProductRequest createProductRequest){
         this.productService.add(createProductRequest);
     }
 
@@ -36,5 +38,10 @@ public class ProductControllers {
     @DeleteMapping("/{id}")
     public void delete( @PathVariable int id){
         this.productService.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public GetByIdProductResponse getById(@PathVariable  int id){
+        return  this.productService.getById(id);
     }
 }

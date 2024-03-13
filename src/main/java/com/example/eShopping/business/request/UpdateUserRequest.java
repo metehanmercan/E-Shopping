@@ -8,16 +8,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
+@AllArgsConstructor
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class UpdateCategoryRequest {
-
+public class UpdateUserRequest {
     @NotNull
-    int id;
+    private int id;
 
     @NotBlank
-    @Size(min = 3,max = 25)
     @NotNull
-    String name;
+    @Size(min = 3, max = 21)
+    private String name;
+
+    @NotNull
+    @Size(min = 3, max = 21)
+    @NotBlank
+    private String email;
 }
