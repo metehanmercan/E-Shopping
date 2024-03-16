@@ -4,7 +4,6 @@ package com.example.eShopping.webApi.controllers;
 import com.example.eShopping.business.abstracts.FavoriteProductService;
 import com.example.eShopping.business.request.CreateFavoriteProductRequest;
 import com.example.eShopping.business.response.GetAllFavoriteProductResponse;
-import com.example.eShopping.entities.concretes.FavoriteProduct;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,13 +32,13 @@ public class FavoriteProductControllers {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable int id) {
         this.favoriteProductService.delete(id);
     }
 
 
     @GetMapping("/api/favoriteProduct/{userName}")
-    public List<GetAllFavoriteProductResponse> getFavoriteAll(String userName){
+    public List<GetAllFavoriteProductResponse> getFavoriteAll(String userName) {
         return this.favoriteProductService.getFavoriteProductAll(userName);
     }
 

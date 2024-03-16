@@ -42,14 +42,14 @@ public class FavoriteProductManager implements FavoriteProductService {
     @Override
     public List<GetAllFavoriteProductResponse> getFavoriteProductAll(String userName) {
         List<FavoriteProduct> favoriteProducts = favoriteProductRepository.findByUserName(userName);
-        List<GetAllFavoriteProductResponse> getAllFavoriteProductResponseList=favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
+        List<GetAllFavoriteProductResponse> getAllFavoriteProductResponseList = favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
         return getAllFavoriteProductResponseList;
     }
 
     @Override
     public List<GetAllFavoriteProductResponse> search(String sortBy, int categoryId) {
-          List<FavoriteProduct> favoriteProducts=favoriteProductRepository.search(sortBy,categoryId);
-        List<GetAllFavoriteProductResponse> getAllFavoriteProductResponses=favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
+        List<FavoriteProduct> favoriteProducts = favoriteProductRepository.search(sortBy, categoryId);
+        List<GetAllFavoriteProductResponse> getAllFavoriteProductResponses = favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
         return getAllFavoriteProductResponses;
     }
 }

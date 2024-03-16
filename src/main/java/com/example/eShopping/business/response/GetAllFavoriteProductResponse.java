@@ -17,5 +17,5 @@ public class GetAllFavoriteProductResponse {
 
     private String productName;
 
-    private String  categoryName;
+    private String categoryName;
 }
