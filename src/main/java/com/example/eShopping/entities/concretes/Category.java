@@ -22,8 +22,10 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "categories")
-
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
     private List<Product> products;
+
+    @OneToMany(mappedBy = "category",cascade = CascadeType.ALL)
+    private List<FavoriteProduct> favoriteProducts;
 
 }

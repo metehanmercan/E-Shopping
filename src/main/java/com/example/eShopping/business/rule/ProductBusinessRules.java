@@ -1,6 +1,7 @@
 package com.example.eShopping.business.rule;
 
 import com.example.eShopping.core.utilities.exceptions.BusinessException;
+import com.example.eShopping.dataAccess.abstracts.CategoryRepository;
 import com.example.eShopping.dataAccess.abstracts.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductBusinessRules {
     private ProductRepository productRepository;
+
+    private CategoryBusinessRules categoryBusinessRules;
 
     public void chekIfProductExistsName(String name) {
         if (this.productRepository.existsByName(name)) {
@@ -23,4 +26,14 @@ public class ProductBusinessRules {
             throw new BusinessException("product does not exists");
         }
     }
-}
+    public void checkProductPrice(double price) {
+        if (price < 100.0) {
+            throw new BusinessException("Product price cannot be less than 100 TL.");
+        }
+
+        }
+         public void dontFindCategory(String name){
+        this.categoryBusinessRules.chekIfCategoryExistsNamee(name);
+         }
+
+    }

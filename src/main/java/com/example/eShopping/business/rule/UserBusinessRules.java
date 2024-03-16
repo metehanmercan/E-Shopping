@@ -22,4 +22,11 @@ public class UserBusinessRules {
             throw new BusinessException("id does not exists");
         }
     }
+
+    public void chekIfExistsEmail(String email) {
+        if (userRepository.existsByEmail(email)) {
+            throw new BusinessException("email name already exists");
+        }
+    }
+
 }

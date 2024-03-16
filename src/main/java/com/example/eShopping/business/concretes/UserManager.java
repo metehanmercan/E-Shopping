@@ -43,6 +43,7 @@ public class UserManager implements UserService {
     @Override
     public void add(CreateUserRequest createUserRequest) {
         this.userBusinessRules.chekIfExistsName(createUserRequest.getName());
+        this.userBusinessRules.chekIfExistsEmail(createUserRequest.getEmail());
         User user = this.modelMapperService.forRequest().map(createUserRequest, User.class);
         this.userRepository.save(user);
     }
@@ -56,6 +57,9 @@ public class UserManager implements UserService {
     @Override
     public void update(UpdateUserRequest updateUserRequest) {
         this.userBusinessRules.chekIfExistsId(updateUserRequest.getId());
+        this.userBusinessRules.chekIfExistsEmail(updateUserRequest.getEmail());
+      //   this.userBusinessRules.chekIfExistsName(updateUserRequest.getName()); // burası çalıştığı zaman kullanıcın sadece email kısmını değişemiyorum
+                                                                                 //   çünkü d.base de aynı ismi farklı kullanıcıya ait gibi görüyor
         User user = this.modelMapperService.forRequest().map(updateUserRequest, User.class);
         this.userRepository.save(user);
     }

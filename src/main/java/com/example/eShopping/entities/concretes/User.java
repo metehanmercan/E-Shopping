@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "users")
 @Data
@@ -23,4 +24,7 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<FavoriteProduct> favoriteProduct;
 }

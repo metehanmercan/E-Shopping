@@ -22,4 +22,9 @@ public class CategoryBusinessRules {
             throw new BusinessException("category does not exists");
         }
     }
+    public void chekIfCategoryExistsNamee(String name) {
+        if (categoryRepository.existsByName(name)==false) {
+            throw new BusinessException("Category not found.");
+        }
+    }
 }
