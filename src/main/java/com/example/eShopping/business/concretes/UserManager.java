@@ -32,6 +32,19 @@ public class UserManager implements UserService {
     }
 
     @Override
+    public List<GetAllUsersResponse> search(String keyword) {
+        if (keyword != null) {
+            List<User> users = this.userRepository.findByNameContaining(keyword);
+            List<GetAllUsersResponse> getAllUsersResponses = users.stream().map(user -> this.modelMapperService.forResponse().map(user, GetAllUsersResponse.class)).collect(Collectors.toList());
+            return getAllUsersResponses;
+        } else {
+            List<User> users = this.userRepository.findAll();
+            List<GetAllUsersResponse> getAllUsersResponses = users.stream().map(user -> this.modelMapperService.forResponse().map(user, GetAllUsersResponse.class)).collect(Collectors.toList());
+            return getAllUsersResponses;
+        }
+    }
+
+    @Override
     public GetByIdUserResponse getById(int id) {
         this.userBusinessRules.chekIfExistsId(id);
         User user = this.userRepository.findById(id).orElseThrow();
@@ -58,8 +71,8 @@ public class UserManager implements UserService {
     public void update(UpdateUserRequest updateUserRequest) {
         this.userBusinessRules.chekIfExistsId(updateUserRequest.getId());
         this.userBusinessRules.chekIfExistsEmail(updateUserRequest.getEmail());
-      //   this.userBusinessRules.chekIfExistsName(updateUserRequest.getName()); // burası çalıştığı zaman kullanıcın sadece email kısmını değişemiyorum
-                                                                                 //   çünkü d.base de aynı ismi farklı kullanıcıya ait gibi görüyor
+        //   this.userBusinessRules.chekIfExistsName(updateUserRequest.getName()); // burası çalıştığı zaman kullanıcın sadece email kısmını değişemiyorum
+        //   çünkü d.base de aynı ismi farklı kullanıcıya ait gibi görüyor
         User user = this.modelMapperService.forRequest().map(updateUserRequest, User.class);
         this.userRepository.save(user);
     }

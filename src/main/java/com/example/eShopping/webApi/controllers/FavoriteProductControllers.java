@@ -4,6 +4,7 @@ package com.example.eShopping.webApi.controllers;
 import com.example.eShopping.business.abstracts.FavoriteProductService;
 import com.example.eShopping.business.request.CreateFavoriteProductRequest;
 import com.example.eShopping.business.response.GetAllFavoriteProductResponse;
+import com.example.eShopping.business.response.GetAllProductResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +47,12 @@ public class FavoriteProductControllers {
     public ResponseEntity<List<GetAllFavoriteProductResponse>> searchFavoriteProducts(@RequestParam(required = false) String sortBy, @RequestParam(required = false) int categoryId) {
         List<GetAllFavoriteProductResponse> favoriteProducts = favoriteProductService.search(sortBy, categoryId);
         return ResponseEntity.ok(favoriteProducts);
+
+
+       }
+
+       @GetMapping("/keyword")
+    public List<GetAllFavoriteProductResponse> search(@RequestParam(required = false) String keyword){
+        return this.favoriteProductService.search(keyword);
+       }
     }
-}

@@ -12,6 +12,8 @@ public interface CategoryService {
 
     List<GetAllCategoryResponse> getAll();
 
+    List<GetAllCategoryResponse> search(String keyword);
+
     GetByIdCategoriesResponse getById(int id);
 
     void delete(int id);

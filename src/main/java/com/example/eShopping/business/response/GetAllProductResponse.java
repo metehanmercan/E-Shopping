@@ -12,10 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetAllProductResponse {
 
-
-
-
-
     private int id;
     private String name;
     private String categoryName;

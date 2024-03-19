@@ -46,4 +46,9 @@ public class UserControllers {
     public void update(UpdateUserRequest updateUserRequest) {
         this.userService.update(updateUserRequest);
     }
+
+    @GetMapping("/keyword")
+    public List<GetAllUsersResponse> search(@RequestParam(required = false) String keyword){
+        return this.userService.search(keyword);
+    }
 }

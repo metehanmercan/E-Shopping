@@ -16,6 +16,11 @@ public class UserBusinessRules {
             throw new BusinessException("user name already exists");
         }
     }
+    public void chekIfExistsNamee(String name) {
+        if (userRepository.existsByName(name)==false) {
+            throw new BusinessException("user name dont found");
+        }
+    }
 
     public void chekIfExistsId(int id) {
         if (userRepository.existsById(id) == false) {

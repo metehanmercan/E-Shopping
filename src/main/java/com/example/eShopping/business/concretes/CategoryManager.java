@@ -9,9 +9,11 @@ import com.example.eShopping.business.rule.CategoryBusinessRules;
 import com.example.eShopping.core.utilities.mappers.ModelMapperService;
 import com.example.eShopping.dataAccess.abstracts.CategoryRepository;
 import com.example.eShopping.entities.concretes.Category;
+import com.example.eShopping.entities.concretes.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +42,21 @@ public class CategoryManager implements CategoryService {
     }
 
     @Override
+    public List<GetAllCategoryResponse> search(String keyword) {
+
+        if(keyword!=null){
+        List<Category> categories=this.categoryRepository.findByNameContaining(keyword);
+        List<GetAllCategoryResponse> getAllCategoryResponses=categories.stream().map(category -> this.modelMapperService.forResponse().map(category, GetAllCategoryResponse.class)).collect(Collectors.toList());
+        return getAllCategoryResponses;
+    }else {
+            List<Category> categories = categoryRepository.findAll();
+            List<GetAllCategoryResponse> categoryResponses = categories.stream().map(category -> this.modelMapperService.forResponse().map(category, GetAllCategoryResponse.class)).collect(Collectors.toList());
+            return categoryResponses;
+
+        }
+    }
+
+    @Override
     public GetByIdCategoriesResponse getById(int id) {
         this.categoryBusinessRules.chekIfCategoryExistsId(id);
         Category category = this.categoryRepository.findById(id).orElseThrow();
@@ -59,7 +76,11 @@ public class CategoryManager implements CategoryService {
         categoryBusinessRules.chekIfCategoryExistsId(updateCategoryRequest.getId());
         Category category = this.modelMapperService.forRequest().map(updateCategoryRequest, Category.class);
         this.categoryRepository.save(category);
+
+
     }
+
+
 
 
 }

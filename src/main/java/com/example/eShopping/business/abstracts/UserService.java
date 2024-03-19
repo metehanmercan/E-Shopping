@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserService {
     List<GetAllUsersResponse> getAll();
 
+    List<GetAllUsersResponse> search(String keyword);
     GetByIdUserResponse getById(int id);
 
     void add(CreateUserRequest createUserRequest);

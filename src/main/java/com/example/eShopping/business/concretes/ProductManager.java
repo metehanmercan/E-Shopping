@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +30,24 @@ public class ProductManager implements ProductService {
         List<GetAllProductResponse> productResponses = products.stream()
                 .map(product -> this.modelMapperService.forResponse().map(product, GetAllProductResponse.class)).collect(Collectors.toList());
         return productResponses;
+    }
+
+    @Override
+    public List<GetAllProductResponse> search(String keyword) {
+        if (Objects.nonNull(keyword)){ //keyword != null
+            List<Product> products=this.productRepository.findByNameContaining(keyword);
+            List<GetAllProductResponse> getAllProductResponses=products.stream().map(product ->
+                    this.modelMapperService.forResponse().map(product,GetAllProductResponse.class)).collect(Collectors.toList());
+            return getAllProductResponses;
+
+        }else {
+            List<Product> products = productRepository.findAll();
+            List<GetAllProductResponse> getAllProductResponses=products.stream().map(product ->
+                    this.modelMapperService.forResponse().map(product,GetAllProductResponse.class)).collect(Collectors.toList());
+            return getAllProductResponses;
+
+        }
+
     }
 
     @Override

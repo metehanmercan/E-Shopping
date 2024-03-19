@@ -11,6 +11,8 @@ import java.util.List;
 public interface ProductService {
     List<GetAllProductResponse> getAll();
 
+    List<GetAllProductResponse> search(String keyword);
+
     GetByIdProductResponse getById(int id);
 
     void add(CreateProductRequest createProductRequest);
@@ -18,5 +20,7 @@ public interface ProductService {
     void update(UpdateProductRequest updateProductRequest);
 
     void delete(int id);
+
+
 
 }

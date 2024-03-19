@@ -12,10 +12,11 @@ public class GetAllFavoriteProductResponse {
 
     private int id;
 
-
     private String userName;
 
     private String productName;
 
     private String categoryName;
+
+    private double price;
 }

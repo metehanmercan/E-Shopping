@@ -45,5 +45,10 @@ public class CategoryControllers {
         this.categoryService.update(updateCategoryRequest);
     }
 
+    @GetMapping("/keyword")
+    public List<GetAllCategoryResponse> search(@RequestParam(required = false) String keyword){
+        return this.categoryService.search(keyword);
+    }
+
 
 }

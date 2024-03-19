@@ -46,4 +46,9 @@ public class ProductControllers {
     public GetByIdProductResponse getById(@PathVariable int id) {
         return this.productService.getById(id);
     }
+
+    @GetMapping("/keyword")
+    public List<GetAllProductResponse> keyword(@RequestParam(required = false) String keyword){
+        return this.productService.search(keyword);
+    }
 }

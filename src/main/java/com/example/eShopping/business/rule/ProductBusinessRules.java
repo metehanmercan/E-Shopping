@@ -18,6 +18,11 @@ public class ProductBusinessRules {
             throw new BusinessException("product name already exists");
         }
     }
+    public void chekIfProductExistsId(int id) {
+        if (this.productRepository.existsById(id)==false) {
+            throw new BusinessException("dont found product");
+        }
+    }
 
     public void chekIfCategoryExistsId(int id) {
         if (this.productRepository.existsById(id) == false) {

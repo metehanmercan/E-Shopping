@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface FavoriteProductRepository extends JpaRepository<FavoriteProduct, Integer> {
     List<FavoriteProduct> findByUserName(String userName);
+    List<FavoriteProduct> findByProduct_NameContaining(String keyword);
 
     List<FavoriteProduct> findByCategory_IdOrderByProduct_PriceAsc(int categoryId);
 
@@ -16,8 +17,9 @@ public interface FavoriteProductRepository extends JpaRepository<FavoriteProduct
         if (categoryId != 0) {
             return findByCategory_IdOrderByProduct_PriceAsc(categoryId);
         }
-
         return findAll(); // Varsayılan olarak tüm favori ürünleri getir
     }
+
+
 
 }
