@@ -20,6 +20,7 @@ public class UserControllers {
 
     private UserService userService;
 
+
     @GetMapping()
     public List<GetAllUsersResponse> getAll() {
         return this.userService.getAll();

@@ -36,15 +36,15 @@ public class FavoriteProductManager implements FavoriteProductService {
 
     @Override
     public List<GetAllFavoriteProductResponse> search(String keyword) {
-       if (keyword!=null){
-           List<FavoriteProduct> favoriteProducts=this.favoriteProductRepository.findByProduct_NameContaining(keyword);
-           List<GetAllFavoriteProductResponse> getAllFavoriteProductResponses=favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
-           return getAllFavoriteProductResponses;
-       }else {
-           List<FavoriteProduct> favoriteProducts=this.favoriteProductRepository.findAll();
-           List<GetAllFavoriteProductResponse> getAllFavoriteProductResponses = favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
-           return getAllFavoriteProductResponses;
-       }
+        if (keyword != null) {
+            List<FavoriteProduct> favoriteProducts = this.favoriteProductRepository.findByProduct_NameContaining(keyword);
+            List<GetAllFavoriteProductResponse> getAllFavoriteProductResponses = favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
+            return getAllFavoriteProductResponses;
+        } else {
+            List<FavoriteProduct> favoriteProducts = this.favoriteProductRepository.findAll();
+            List<GetAllFavoriteProductResponse> getAllFavoriteProductResponses = favoriteProducts.stream().map(favoriteProduct -> this.modelMapperService.forResponse().map(favoriteProduct, GetAllFavoriteProductResponse.class)).collect(Collectors.toList());
+            return getAllFavoriteProductResponses;
+        }
     }
 
     @Override

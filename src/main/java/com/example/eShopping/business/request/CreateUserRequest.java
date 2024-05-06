@@ -21,4 +21,5 @@ public class CreateUserRequest {
     @NotBlank
     @Size(min = 3, max = 25)
     private String email;
+    
 }
